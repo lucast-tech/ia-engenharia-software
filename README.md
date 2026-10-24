@@ -20,6 +20,24 @@ Código funcional não significa sistema seguro, escalável ou bem projetado.
 - Issue com discussão técnica sobre o tema  
 - Exemplo de código demonstrando risco de segurança em autenticação simples  
 
+## Projetos
+
+Além da discussão acima, este repositório reúne meus projetos na pasta `projetos/`:
+
+| Pasta | O que é |
+|---|---|
+| [`projetos/geraqr`](projetos/geraqr) | Gerador de QR Codes que roda no navegador |
+| [`projetos/conexoes-esg`](projetos/conexoes-esg) | MVP do InovaHACK SENAI Porto 2026 (Copiloto ESG) |
+| [`projetos/site-lucastorres`](projetos/site-lucastorres) | Site lucast.tech |
+| [`projetos/meus-sites`](projetos/meus-sites) | Lista dos meus sites no Wix |
+
+## Links
+
+- Site oficial: https://www.lucast.tech/
+- Meus sites de criança: https://www.lucast.tech/infancia
+- GeraQR (online): https://geraqr-lt.netlify.app/
+- Conexões ESG (online): https://aevosenai.netlify.app/ — *o link está fora do ar no momento; vou corrigir em breve.*
+
 ## Objetivo
 
 Mostrar que código funcional não garante software seguro, escalável ou sustentável.

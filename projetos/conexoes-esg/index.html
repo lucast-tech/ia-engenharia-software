@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1017">
+<title>Conexões ESG · Copiloto de ideias sustentáveis</title>
+<meta name="description" content="Copiloto conversacional que lê a ideia do colaborador e mostra a que dimensões ESG ela se conecta. InovaHACK SENAI Porto 2026 — desafio AEVO.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-foco="nao">
+
+<!-- FILTROS DE DALTONISMO
+     4 matrizes de cor via SVG, ligadas ao <body> pela classe cb-<modo>
+     (ver style.css). Mesmo mecanismo do site pessoal do Lucas
+     (lucastorrestecnologia.com.br) — só os 4 filtros, sem o resto do
+     painel de acessibilidade de lá. -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="cb-deuteranopia" x="0" y="0" width="100%" height="100%" color-interpolation-filters="linearRGB">
+      <feColorMatrix type="matrix" values="0.625 0.375 0     0 0
+                                            0.7   0.3   0     0 0
+                                            0     0.3   0.7   0 0
+                                            0     0     0     1 0"/>
+    </filter>
+    <filter id="cb-protanopia" x="0" y="0" width="100%" height="100%" color-interpolation-filters="linearRGB">
+      <feColorMatrix type="matrix" values="0.567 0.433 0     0 0
+                                            0.558 0.442 0     0 0
+                                            0     0.242 0.758 0 0
+                                            0     0     0     1 0"/>
+    </filter>
+    <filter id="cb-tritanopia" x="0" y="0" width="100%" height="100%" color-interpolation-filters="linearRGB">
+      <feColorMatrix type="matrix" values="0.95  0.05  0     0 0
+                                            0     0.433 0.567 0 0
+                                            0     0.475 0.525 0 0
+                                            0     0     0     1 0"/>
+    </filter>
+    <filter id="cb-achromatopsia" x="0" y="0" width="100%" height="100%" color-interpolation-filters="linearRGB">
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+</svg>
+
+<header>
+  <div class="marca">
+    <!-- O símbolo é o próprio conceito: um ponto que se liga a três. -->
+    <svg width="30" height="30" viewBox="0 0 200 200" aria-hidden="true">
+      <g fill="none" stroke-width="11" stroke-linecap="round">
+        <path d="M 100 22 A 78 78 0 0 1 167.5 139" stroke="#3ad392"/>
+        <path d="M 167.5 139 A 78 78 0 0 1 32.5 139" stroke="#57a8ff"/>
+        <path d="M 32.5 139 A 78 78 0 0 1 100 22"   stroke="#ffc352"/>
+      </g>
+      <g stroke="#57a8ff" stroke-width="4.5" stroke-linecap="round" opacity=".5" fill="none">
+        <path d="M 100 100 L 100 44"/><path d="M 100 100 L 148 128"/><path d="M 100 100 L 52 128"/>
+        <path d="M 100 44 L 148 128"/><path d="M 148 128 L 52 128"/><path d="M 52 128 L 100 44"/>
+      </g>
+      <circle cx="100" cy="22" r="13" fill="#3ad392"/>
+      <circle cx="167.5" cy="139" r="13" fill="#57a8ff"/>
+      <circle cx="32.5" cy="139" r="13" fill="#ffc352"/>
+      <circle cx="100" cy="100" r="14" fill="#0b1017" stroke="#e9eff6" stroke-width="6"/>
+      <path d="M 100 22 C 118 4 142 2 152 8 C 150 30 132 44 112 38 C 105 35 100 29 100 22 Z" fill="#3ad392"/>
+    </svg>
+    <span>
+      <b>Conexões ESG</b>
+      <span class="sub">InovaHACK SENAI Porto</span>
+    </span>
+  </div>
+  <div class="vao"></div>
+  <button class="chave" id="btFoco" aria-pressed="false">
+    <span class="curto">Foco</span><span class="longo">Modo foco</span>
+  </button>
+  <button class="chave" id="btAcess" aria-haspopup="true" aria-expanded="false" aria-controls="painelAcess">
+    <span class="curto">Acess.</span><span class="longo">Acessibilidade</span>
+  </button>
+</header>
+
+<!-- PAINEL DE ACESSIBILIDADE
+     Modo TDAH (liga/desliga) e modo daltônico (4 filtros, ver as
+     defs de SVG logo no início do body). Aberto pelo botão acima;
+     lógica de abrir/fechar e de aplicar os modos está em app.js. -->
+<div id="painelAcess" class="painel-acess" role="dialog" aria-label="Opções de acessibilidade" hidden>
+  <div class="linha-acess">
+    <span>Modo TDAH</span>
+    <button class="chave" id="btTdah" aria-pressed="false">Ativar</button>
+  </div>
+  <div class="linha-acess">
+    <span>Baixa visão</span>
+    <button class="chave" id="btBaixaVisao" aria-pressed="false">Ativar</button>
+  </div>
+  <div class="linha-acess linha-acess-col">
+    <span>Modo daltônico</span>
+    <div class="grupo-cor" id="grupoCor">
+      <button class="chave" data-cb="" aria-pressed="true">Nenhum</button>
+      <button class="chave" data-cb="deuteranopia" aria-pressed="false">Deuter.</button>
+      <button class="chave" data-cb="protanopia" aria-pressed="false">Protan.</button>
+      <button class="chave" data-cb="tritanopia" aria-pressed="false">Tritan.</button>
+      <button class="chave" data-cb="achromatopsia" aria-pressed="false">Acromat.</button>
+    </div>
+  </div>
+</div>
+
+<nav class="abas" role="tablist">
+  <button role="tab" aria-selected="true" data-aba="conversa">Conversa</button>
+  <button role="tab" aria-selected="false" data-aba="painel">Painel <span class="cont" id="qtdIdeias">0</span></button>
+</nav>
+
+<main>
+  <!-- ===================== CONVERSA ===================== -->
+  <section id="aba-conversa" class="duplo">
+    <div class="cx">
+      <h2><span class="num">01</span> Conversa</h2>
+
+      <!-- ASSINATURA: o grafo de conexões. A ideia à esquerda, as três
+           dimensões à direita. A linha se acende só onde há ligação real. -->
+      <div class="grafo">
+        <svg viewBox="0 0 420 190" role="img" aria-labelledby="tituloGrafo">
+          <title id="tituloGrafo">Diagrama das conexões da ideia com as dimensões Ambiental, Social e Governança</title>
+
+          <path class="fio" id="fio-E" d="M 126 95 C 180 95 196 38 244 38"/>
+          <path class="fio" id="fio-S" d="M 126 95 L 244 95"/>
+          <path class="fio" id="fio-G" d="M 126 95 C 180 95 196 152 244 152"/>
+
+          <g class="centro">
+            <circle cx="78" cy="95" r="44"/>
+            <text x="78" y="95">IDEIA</text>
+          </g>
+
+          <g class="no" id="no-E" data-d="E">
+            <circle cx="268" cy="38" r="22"/>
+            <text class="letra" x="268" y="38">E</text>
+            <text class="nome" x="300" y="38">Ambiental</text>
+          </g>
+          <g class="no" id="no-S" data-d="S">
+            <circle cx="268" cy="95" r="22"/>
+            <text class="letra" x="268" y="95">S</text>
+            <text class="nome" x="300" y="95">Social</text>
+          </g>
+          <g class="no" id="no-G" data-d="G">
+            <circle cx="268" cy="152" r="22"/>
+            <text class="letra" x="268" y="152">G</text>
+            <text class="nome" x="300" y="152">Governança</text>
+          </g>
+        </svg>
+      </div>
+
+      <div id="fluxo" aria-live="polite"></div>
+
+      <div class="exemplos" id="exemplos">
+        <span class="eti">Exemplos do chão de fábrica</span>
+      </div>
+
+      <div class="entrada">
+        <label class="sr" for="texto">Descreva sua ideia</label>
+        <textarea id="texto" rows="1" placeholder="Descreva sua ideia…"></textarea>
+        <button class="bt" id="btEnviar">Enviar</button>
+      </div>
+    </div>
+
+    <div class="cx" id="ficha">
+      <h2>Ficha da ideia</h2>
+      <div id="corpoFicha">
+        <div class="vazio">
+          <svg width="44" height="44" viewBox="0 0 30 30" aria-hidden="true">
+            <line x1="15" y1="15" x2="6"  y2="6"  stroke="#64778c" stroke-width="1.4" stroke-dasharray="3 3"/>
+            <line x1="15" y1="15" x2="24" y2="9"  stroke="#64778c" stroke-width="1.4" stroke-dasharray="3 3"/>
+            <line x1="15" y1="15" x2="13" y2="25" stroke="#64778c" stroke-width="1.4" stroke-dasharray="3 3"/>
+            <circle cx="6" cy="6" r="3" fill="none" stroke="#64778c"/>
+            <circle cx="24" cy="9" r="3" fill="none" stroke="#64778c"/>
+            <circle cx="13" cy="25" r="3" fill="none" stroke="#64778c"/>
+            <circle cx="15" cy="15" r="4" fill="none" stroke="#64778c"/>
+          </svg>
+          <b>Nenhuma conexão traçada ainda.</b>
+          Conte uma ideia na conversa. A ficha aparece aqui com a leitura ESG, o potencial e os próximos passos.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PAINEL ===================== -->
+  <section id="aba-painel" class="oculto">
+    <div class="numeros" id="numeros"></div>
+    <div class="ranking oculto" id="ranking"></div>
+    <div class="cx">
+      <h2>Ideias analisadas
+        <button id="btLimpar" class="bt-limpar oculto" title="Apaga as ideias guardadas neste navegador">Limpar</button>
+      </h2>
+      <table>
+        <thead><tr><th>Ideia</th><th>Conexões</th><th>Potencial</th><th>Área</th></tr></thead>
+        <tbody id="tabelaIdeias"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- RÉGUA DE FOCO — modo TDAH -->
+<div id="reguaFoco" class="regua-foco" aria-hidden="true"></div>
+
+<!-- TRANSPARÊNCIA DE API
+     O README já descreve isto na tabela do desafio ("Transparência de
+     API | Rodapé fixo dizendo o que sai e o que não sai da máquina"),
+     mas o elemento não existia no HTML — conferido com grep antes de
+     adicionar. É o que a AEVO pede em "Requisitos técnicos": deixar
+     claro quais dados são enviados a terceiros. -->
+<footer class="rodape-transp">
+  <strong>Dados enviados:</strong> quando a IA responde, o texto da ideia — sem CPF, CNPJ, e-mail, telefone ou matrícula, removidos antes do envio — vai para o Gemini ou o Groq. Se os dois falharem, a análise roda inteira no navegador e nada sai da máquina.
+</footer>
+
+<script src="config.js"></script>
+<script src="filtro.js"></script>
+<script src="motor-local.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

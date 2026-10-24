@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="t d">
+  <title id="t">Conexões ESG</title>
+  <desc id="d">Globo formado por três arcos nas cores das dimensões Ambiental, Social e Governança, com nós de conexão e uma folha brotando do topo.</desc>
+
+  <!-- ============================================================
+       LOGO ORIGINAL · Conexões ESG · InovaHACK SENAI Porto 2026
+       Desenhada para a equipe. Sem material de terceiros, sem
+       banco de imagens: pode ser usada no pitch, no crachá e no
+       material impresso sem risco com o edital.
+
+       O desenho é o conceito: o globo não é um desenho de planeta,
+       é uma rede. Três arcos nas cores das dimensões se fecham em
+       círculo, e os nós marcam onde uma ideia se conecta. A folha
+       brotando do centro é o resultado.
+       ============================================================ -->
+
+  <defs>
+    <linearGradient id="folha" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#17663f"/>
+      <stop offset="1" stop-color="#3ad392"/>
+    </linearGradient>
+  </defs>
+
+  <!-- órbita externa: os três arcos das dimensões -->
+  <g fill="none" stroke-width="9" stroke-linecap="round">
+    <path d="M 100 22 A 78 78 0 0 1 167.5 139" stroke="#3ad392"/>
+    <path d="M 167.5 139 A 78 78 0 0 1 32.5 139"  stroke="#57a8ff"/>
+    <path d="M 32.5 139 A 78 78 0 0 1 100 22"     stroke="#ffc352"/>
+  </g>
+
+  <!-- malha interna: as ligações que atravessam a rede -->
+  <g stroke="#57a8ff" stroke-width="3.2" stroke-linecap="round" opacity=".55" fill="none">
+    <path d="M 100 100 L 100 44"/>
+    <path d="M 100 100 L 148 128"/>
+    <path d="M 100 100 L 52 128"/>
+    <path d="M 100 44 L 148 128"/>
+    <path d="M 148 128 L 52 128"/>
+    <path d="M 52 128 L 100 44"/>
+  </g>
+
+  <!-- nós das dimensões, cada um na sua cor -->
+  <circle cx="100" cy="22"  r="12" fill="#3ad392"/>
+  <circle cx="167.5" cy="139" r="12" fill="#57a8ff"/>
+  <circle cx="32.5"  cy="139" r="12" fill="#ffc352"/>
+
+  <!-- nós internos -->
+  <g fill="#0b1017" stroke="#57a8ff" stroke-width="3.2">
+    <circle cx="100" cy="44"  r="7"/>
+    <circle cx="148" cy="128" r="7"/>
+    <circle cx="52"  cy="128" r="7"/>
+  </g>
+
+  <!-- centro: a ideia -->
+  <circle cx="100" cy="100" r="13" fill="#0b1017" stroke="#e9eff6" stroke-width="4.5"/>
+
+  <!-- a folha: o que brota da conexão -->
+  <path d="M 100 22 C 118 4 142 2 152 8 C 150 30 132 44 112 38 C 105 35 100 29 100 22 Z" fill="url(#folha)"/>
+  <path d="M 106 30 C 118 20 132 14 146 11" stroke="#0b1017" stroke-width="2.6" fill="none" opacity=".45" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,534 @@
+/* ==========================================================
+   CONEXÕES ESG · folha de estilo
+   InovaHACK SENAI Porto 2026 — desafio AEVO
+
+   Escrita mobile-first: a base vale para celular, e os dois
+   @media acrescentam o que só faz sentido em tela maior.
+   Três larguras: celular · tablet (720px) · desktop (1040px).
+
+   Tema escuro por decisão de apresentação: a demo roda em
+   projetor numa sala iluminada, e fundo escuro com texto claro
+   é o que se lê do fundo da sala.
+
+   As cores das três dimensões vêm da NR-26, a norma de cores de
+   segurança da indústria brasileira, clareadas para contraste
+   sobre o escuro. Nenhuma informação depende só de cor: toda
+   dimensão traz letra e nome escrito junto.
+   ========================================================== */
+
+:root{
+  --breu:      #0b1017;
+  --casco:     #131b26;
+  --casco-2:   #1a2431;
+  --traco:     #26333f;
+  --traco-2:   #38495a;
+
+  --claro:     #e9eff6;
+  --meio:      #93a5ba;
+  --fraco:     #64778c;
+
+  --amb:       #3ad392;
+  --soc:       #57a8ff;
+  --gov:       #ffc352;
+  --baixo:     #8497aa;
+
+  --amb-veu:   rgba(58,211,146,.13);
+  --soc-veu:   rgba(87,168,255,.13);
+  --gov-veu:   rgba(255,195,82,.13);
+
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --r: 12px;
+  --gap: 14px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--breu);color:var(--claro);
+  font-family:var(--sans);font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(760px 320px at 20% -6%, rgba(87,168,255,.10), transparent 62%),
+             radial-gradient(620px 300px at 92% 2%, rgba(58,211,146,.07), transparent 60%);
+}
+body > *{position:relative;z-index:1}
+
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--soc);outline-offset:2px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.oculto{display:none !important}
+
+.eti{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--fraco);font-weight:700;
+}
+
+/* ===================== CABEÇALHO =====================
+   No celular tudo cabe numa linha só: a marca encolhe e os
+   botões usam rótulo curto. */
+header{
+  border-bottom:1px solid var(--traco);
+  background:rgba(11,16,23,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:60;
+  padding:9px 14px;display:flex;align-items:center;gap:8px;
+}
+.marca{display:flex;align-items:center;gap:9px;min-width:0}
+.marca svg{flex:0 0 26px}
+.marca b{display:block;font-size:15px;font-weight:800;letter-spacing:-.015em;line-height:1.15;white-space:nowrap}
+.marca .sub{
+  display:none;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--fraco);margin-top:1px;
+}
+header .vao{flex:1}
+
+.chave{
+  background:var(--casco);border:1px solid var(--traco-2);color:var(--meio);
+  padding:7px 11px;border-radius:20px;white-space:nowrap;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;transition:border-color .15s,color .15s;
+}
+.chave:hover{border-color:var(--meio);color:var(--claro)}
+.chave[aria-pressed="true"]{background:var(--claro);color:var(--breu);border-color:var(--claro)}
+.longo{display:none}
+
+/* ===================== ABAS ===================== */
+nav.abas{border-bottom:1px solid var(--traco);display:flex;padding:0 14px;gap:2px;background:var(--breu)}
+nav.abas button{
+  background:none;border:none;border-bottom:2px solid transparent;
+  padding:12px;font-size:13.5px;font-weight:600;color:var(--fraco);transition:.15s;
+}
+nav.abas button[aria-selected="true"]{color:var(--claro);border-bottom-color:var(--soc)}
+.cont{
+  font-family:var(--mono);font-size:10px;background:var(--casco-2);
+  padding:2px 7px;border-radius:9px;margin-left:5px;color:var(--meio);
+}
+
+main{padding:var(--gap)}
+.duplo{display:flex;flex-direction:column;gap:var(--gap)}
+
+.cx{background:var(--casco);border:1px solid var(--traco);border-radius:var(--r);overflow:hidden}
+.cx > h2{
+  margin:0;padding:12px 16px;border-bottom:1px solid var(--traco);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fraco);font-weight:700;display:flex;align-items:center;gap:8px;
+}
+.cx > h2 .num{color:var(--soc)}
+.bt-limpar{
+  margin-left:auto;background:transparent;border:1px solid var(--traco-2);
+  color:var(--fraco);border-radius:14px;padding:4px 11px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+}
+.bt-limpar:hover{border-color:var(--baixo);color:var(--claro)}
+
+/* ===================== GRAFO DE CONEXÕES =====================
+   A assinatura da interface. A equipe se chama Conexões ESG, e a
+   leitura é desenhada como ligação: a ideia à esquerda, três nós
+   à direita, e a linha se acende só onde há ligação real.
+
+   Geometria conferida para o viewBox 0 0 420 190: nós em x=268
+   com raio 22, rótulos começando em x=300 com 14px. O mais longo
+   ("Governança") termina antes de x=400. Nada colide e nada é
+   cortado quando o SVG encolhe no celular. */
+.grafo{padding:16px 12px;background:var(--breu);border-bottom:1px solid var(--traco)}
+.grafo svg{width:100%;height:auto;display:block}
+
+.fio{fill:none;stroke:var(--traco-2);stroke-width:1.5;stroke-dasharray:4 5;opacity:.45}
+.fio.viva{stroke-width:2.5;stroke-dasharray:none;opacity:1;animation:desenha .65s ease-out both}
+@keyframes desenha{from{stroke-dashoffset:240;stroke-dasharray:240}to{stroke-dashoffset:0;stroke-dasharray:240}}
+.fio.viva[data-d="E"]{stroke:var(--amb)}
+.fio.viva[data-d="S"]{stroke:var(--soc)}
+.fio.viva[data-d="G"]{stroke:var(--gov)}
+
+.no circle{fill:var(--casco-2);stroke:var(--traco-2);stroke-width:1.5;transition:fill .3s,stroke .3s}
+.no .letra{font-family:var(--mono);font-size:17px;font-weight:700;text-anchor:middle;dominant-baseline:central;fill:var(--fraco);transition:fill .3s}
+.no .nome{font-family:var(--sans);font-size:14px;font-weight:600;dominant-baseline:central;fill:var(--fraco);transition:fill .3s}
+.no.viva[data-d="E"] circle{fill:var(--amb-veu);stroke:var(--amb)}
+.no.viva[data-d="E"] .letra,.no.viva[data-d="E"] .nome{fill:var(--amb)}
+.no.viva[data-d="S"] circle{fill:var(--soc-veu);stroke:var(--soc)}
+.no.viva[data-d="S"] .letra,.no.viva[data-d="S"] .nome{fill:var(--soc)}
+.no.viva[data-d="G"] circle{fill:var(--gov-veu);stroke:var(--gov)}
+.no.viva[data-d="G"] .letra,.no.viva[data-d="G"] .nome{fill:var(--gov)}
+.centro circle{fill:var(--casco-2);stroke:var(--claro);stroke-width:2}
+.centro text{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;text-anchor:middle;dominant-baseline:central;fill:var(--claro)}
+
+/* ===================== CONVERSA =====================
+   No celular a página inteira rola: sem caixa de rolagem dentro
+   de caixa de rolagem, que no toque é sofrível. */
+#fluxo{padding:16px;display:flex;flex-direction:column;gap:11px}
+#fluxo::-webkit-scrollbar{width:8px}
+#fluxo::-webkit-scrollbar-thumb{background:var(--traco-2);border-radius:4px}
+
+.fala{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14.5px;white-space:pre-wrap;animation:sobe .2s ease-out}
+@keyframes sobe{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fala.eu{align-self:flex-end;background:var(--soc);color:#03121f;font-weight:500;border-bottom-right-radius:4px}
+.fala.ele{align-self:flex-start;background:var(--casco-2);border:1px solid var(--traco);border-bottom-left-radius:4px}
+.fala.sistema{
+  align-self:stretch;max-width:100%;background:var(--gov-veu);
+  border:1px solid rgba(255,195,82,.3);color:#ffd98a;font-size:12.5px;border-radius:10px;
+}
+.digitando{display:flex;gap:5px;padding:14px}
+.digitando i{width:6px;height:6px;background:var(--meio);border-radius:50%;animation:pisca 1.1s infinite}
+.digitando i:nth-child(2){animation-delay:.15s}
+.digitando i:nth-child(3){animation-delay:.3s}
+@keyframes pisca{0%,60%,100%{opacity:.22}30%{opacity:1}}
+
+/* sugestões — somem sozinhas depois da primeira mensagem */
+.exemplos{padding:0 16px 4px;display:flex;gap:7px;flex-wrap:wrap}
+.exemplos > .eti{width:100%;margin-bottom:3px}
+.exemplos button{
+  background:var(--casco-2);border:1px solid var(--traco);border-radius:9px;
+  padding:9px 12px;font-size:12.5px;color:var(--meio);text-align:left;
+  line-height:1.4;transition:border-color .15s,color .15s;
+}
+.exemplos button:hover{border-color:var(--soc);color:var(--claro)}
+
+/* Botão da demonstração: enche o painel de uma vez, para o pitch não
+   gastar tempo digitando ideia na frente da banca. */
+.exemplos .bt-demo{
+  width:100%;margin-top:4px;background:var(--soc-veu);
+  border:1px solid rgba(87,168,255,.45);color:var(--soc);
+  font-weight:700;text-align:center;padding:11px 12px;font-size:13px;
+}
+.exemplos .bt-demo:hover{background:rgba(87,168,255,.2);color:var(--claro);border-color:var(--soc)}
+.exemplos .bt-demo:disabled{opacity:.55;cursor:wait}
+
+.entrada{border-top:1px solid var(--traco);padding:12px 14px;display:flex;gap:9px;align-items:flex-end;margin-top:12px}
+.entrada textarea{
+  flex:1;min-width:0;resize:none;background:var(--breu);
+  border:1px solid var(--traco-2);border-radius:11px;
+  padding:12px 13px;font:inherit;font-size:16px;
+  color:var(--claro);height:50px;max-height:140px;overflow-y:auto;
+}
+.entrada textarea::placeholder{color:var(--fraco)}
+.entrada textarea:focus{border-color:var(--soc);outline:none}
+
+.bt{
+  background:var(--claro);color:var(--breu);border:none;border-radius:11px;
+  padding:0 18px;height:50px;font-weight:800;font-size:14px;white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center;transition:opacity .15s,transform .15s;
+}
+.bt:hover{transform:translateY(-1px)}
+.bt:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.bt.vazado{background:transparent;color:var(--claro);border:1px solid var(--traco-2);width:100%}
+.bt.vazado:hover{border-color:var(--claro)}
+
+/* ===================== FICHA DA IDEIA ===================== */
+.vazio{padding:38px 22px;text-align:center;color:var(--fraco);font-size:13.5px}
+.vazio b{display:block;color:var(--claro);font-size:15px;margin-bottom:6px}
+.vazio svg{margin-bottom:12px;opacity:.35}
+
+.placa{padding:16px}
+.tit-ideia{margin:8px 0 16px;font-weight:700;font-size:16.5px;line-height:1.35}
+
+.medidor{border:1px solid var(--traco);border-radius:11px;overflow:hidden;margin-bottom:18px;background:var(--breu)}
+.medidor .topo{display:flex;justify-content:space-between;align-items:baseline;padding:11px 14px 9px;gap:10px}
+.medidor .valor{font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.03em}
+.escala{display:flex;height:7px;gap:3px;padding:0 14px 13px}
+.escala i{flex:1;background:var(--traco-2);border-radius:3px;opacity:.5}
+.escala i[data-on="1"]{opacity:1}
+.medidor[data-n="ALTO"] .valor{color:var(--amb)}
+.medidor[data-n="ALTO"] .escala i[data-on="1"]{background:var(--amb);box-shadow:0 0 7px rgba(58,211,146,.5)}
+.medidor[data-n="MÉDIO"] .valor{color:var(--gov)}
+.medidor[data-n="MÉDIO"] .escala i[data-on="1"]{background:var(--gov)}
+.medidor[data-n="BAIXO"] .valor{color:var(--baixo)}
+.medidor[data-n="BAIXO"] .escala i[data-on="1"]{background:var(--baixo)}
+
+.secao{border-top:1px solid var(--traco);padding-top:14px;margin-top:14px}
+.secao:first-of-type{border-top:none;margin-top:0;padding-top:0}
+.secao h3{margin:0 0 9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fraco);font-weight:700}
+.secao ul{margin:0;padding-left:19px;font-size:13.5px}
+.secao li{margin-bottom:6px}
+.pilulas{display:flex;flex-wrap:wrap;gap:6px}
+.pilula{background:var(--casco-2);border:1px solid var(--traco);border-radius:15px;padding:5px 12px;font-size:12px;color:var(--meio)}
+
+.porque{background:var(--casco-2);border-left:3px solid var(--traco-2);border-radius:0 9px 9px 0;padding:11px 13px;margin-bottom:8px;font-size:13px}
+.porque[data-d="E"]{border-left-color:var(--amb)}
+.porque[data-d="S"]{border-left-color:var(--soc)}
+.porque[data-d="G"]{border-left-color:var(--gov)}
+.porque b{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em}
+.porque[data-d="E"] b{color:var(--amb)}
+.porque[data-d="S"] b{color:var(--soc)}
+.porque[data-d="G"] b{color:var(--gov)}
+
+.passo{display:flex;gap:11px;margin-bottom:10px;font-size:13.5px;align-items:flex-start}
+.passo .n{
+  flex:0 0 22px;height:22px;background:var(--casco-2);border:1px solid var(--traco-2);
+  color:var(--meio);font-family:var(--mono);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border-radius:50%;margin-top:1px;
+}
+
+
+.destino{
+  background:var(--soc-veu);border:1px solid rgba(87,168,255,.32);border-radius:10px;
+  padding:12px 14px;margin-top:14px;font-size:13.5px;line-height:1.5;color:#cfe4ff;
+}
+.destino b{display:block;margin-bottom:4px;color:var(--soc);font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.destino.lucro{background:rgba(58,211,146,.09);border-color:rgba(58,211,146,.32);color:#bdf0d8}
+.destino.lucro b{color:var(--amb)}
+
+.rodape-ficha{border-top:1px solid var(--traco);padding:13px 16px}
+
+/* ===================== PAINEL GERENCIAL ===================== */
+.numeros{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:var(--gap)}
+.numero{background:var(--casco);border:1px solid var(--traco);border-radius:var(--r);padding:15px 16px}
+.numero .n{font-family:var(--mono);font-size:30px;font-weight:800;line-height:1}
+.numero .r{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fraco);margin-top:6px;font-weight:700}
+.numero[data-d="E"] .n{color:var(--amb)}
+.numero[data-d="S"] .n{color:var(--soc)}
+.numero[data-d="G"] .n{color:var(--gov)}
+.numero[data-d="alto"] .n{color:var(--amb)}
+
+/* Ranking de oportunidades — cada cartão aponta a melhor ideia numa
+   categoria (financeira, ambiental, social, governança, facilidade).
+   1 coluna no celular (o cartão tem mais texto que um .numero, não
+   cabe 2 lado a lado sem espremer); 2 a partir de 720px, junto com o
+   breakpoint que já existe para .numeros logo abaixo. */
+.ranking{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:var(--gap)}
+.card-rank{
+  background:var(--casco);border:1px solid var(--traco);border-radius:var(--r);
+  padding:13px 14px;text-align:left;cursor:pointer;transition:.15s;
+}
+.card-rank:hover{border-color:var(--soc)}
+.card-rank .rot{
+  display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--fraco);font-weight:700;margin-bottom:6px;
+}
+.card-rank .tit{display:block;font-size:13.5px;font-weight:700;color:var(--claro);line-height:1.3;margin-bottom:3px}
+.card-rank .det{display:block;font-family:var(--mono);font-size:11.5px;color:var(--meio)}
+
+/* No celular a tabela vira lista: cada linha empilha com o nome
+   do campo à esquerda, em vez de rolar na horizontal. */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead{display:none}
+tbody tr{display:block;border-bottom:1px solid var(--traco);padding:13px 16px}
+tbody tr:last-child{border-bottom:none}
+tbody td{display:flex;gap:10px;padding:3px 0;border:none;align-items:baseline}
+tbody td::before{
+  content:attr(data-rotulo);flex:0 0 74px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fraco);font-weight:700;
+}
+tbody td.principal{display:block;margin-bottom:5px}
+tbody td.principal::before{display:none}
+
+.selo{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:800;
+  padding:3px 8px;border-radius:6px;margin-right:4px;border:1px solid;
+}
+.selo[data-d="E"]{color:var(--amb);border-color:rgba(58,211,146,.45);background:var(--amb-veu)}
+.selo[data-d="S"]{color:var(--soc);border-color:rgba(87,168,255,.45);background:var(--soc-veu)}
+.selo[data-d="G"]{color:var(--gov);border-color:rgba(255,195,82,.45);background:var(--gov-veu)}
+.nivel{font-family:var(--mono);font-size:11.5px;font-weight:800}
+.nivel[data-n="ALTO"]{color:var(--amb)}
+.nivel[data-n="MÉDIO"]{color:var(--gov)}
+.nivel[data-n="BAIXO"]{color:var(--baixo)}
+
+/* ===================== MODO FOCO =====================
+   Recolhe o detalhamento longo e deixa na tela só a decisão. */
+body[data-foco="sim"] .so-completo{display:none}
+body[data-foco="sim"] .exemplos{display:none}
+body[data-foco="sim"] .fala.ele{font-size:15.5px}
+body[data-foco="sim"] .grafo{padding:10px}
+
+/* ===================== ACESSIBILIDADE: TDAH E DALTÔNICO =====================
+   Painel aberto pelo botão #btAcess no cabeçalho. Mesmos dois recursos
+   do site pessoal do Lucas (lucastorrestecnologia.com.br): o modo TDAH
+   reduz movimento e reforça o foco visível; o modo daltônico aplica um
+   dos 4 filtros SVG definidos no início do index.html. */
+.painel-acess{
+  display:flex;flex-direction:column;gap:12px;
+  position:fixed;top:54px;right:14px;z-index:70;
+  width:min(260px, calc(100vw - 28px));
+  background:var(--breu);border:1px solid var(--traco-2);border-radius:var(--r);
+  padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+.painel-acess[hidden]{display:none}
+.linha-acess{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:var(--meio)}
+.linha-acess-col{flex-direction:column;align-items:stretch;gap:8px}
+.grupo-cor{display:flex;flex-wrap:wrap;gap:6px}
+.grupo-cor .chave{flex:1 1 auto;justify-content:center}
+
+/* Filtros de simulação de daltonismo — defs em index.html.
+
+   Aplicados nos contêineres de conteúdo, NÃO no <body>: pela
+   especificação, um `filter` diferente de none faz o elemento virar
+   bloco de contenção para descendentes position:fixed. Com o filtro
+   no body, o painel de acessibilidade e a régua do TDAH passavam a se
+   posicionar em relação ao body em vez da janela — e rolavam junto
+   com a página. Isso aparecia no pior momento possível: no instante
+   em que se clica num modo daltônico, com o painel aberto na tela.
+
+   São filtros de matriz de cor (puramente por pixel, sem componente
+   espacial como desfoque), então dividir em quatro elementos dá
+   exatamente o mesmo resultado de aplicar no conjunto — sem emenda
+   visível. O painel fica fora do filtro de propósito: é o controle
+   que a pessoa está usando pra trocar de modo. */
+body.cb-deuteranopia  header, body.cb-deuteranopia  nav.abas, body.cb-deuteranopia  main, body.cb-deuteranopia  .rodape-transp{filter:url(#cb-deuteranopia)}
+body.cb-protanopia    header, body.cb-protanopia    nav.abas, body.cb-protanopia    main, body.cb-protanopia    .rodape-transp{filter:url(#cb-protanopia)}
+body.cb-tritanopia    header, body.cb-tritanopia    nav.abas, body.cb-tritanopia    main, body.cb-tritanopia    .rodape-transp{filter:url(#cb-tritanopia)}
+body.cb-achromatopsia header, body.cb-achromatopsia nav.abas, body.cb-achromatopsia main, body.cb-achromatopsia .rodape-transp{filter:url(#cb-achromatopsia)}
+
+/* Modo TDAH — mesma ideia do @media prefers-reduced-motion abaixo, só
+   que sob controle do usuário, mais foco reforçado (cor --gov, pra não
+   se confundir com o azul do :focus-visible normal) e a régua de
+   leitura que acompanha o cursor/dedo. */
+body.tdah *{transition:none!important}
+body.tdah .fala,body.tdah .fio.viva{animation:none}
+body.tdah .bt:hover{transform:none}
+body.tdah :focus-visible{
+  outline:3px solid var(--gov)!important;outline-offset:2px!important;
+  box-shadow:0 0 0 5px rgba(255,195,82,.25)!important;
+}
+.regua-foco{
+  display:none;position:fixed;left:0;right:0;height:2.6em;
+  background:rgba(255,195,82,.10);border-top:2px solid rgba(255,195,82,.4);
+  border-bottom:2px solid rgba(255,195,82,.4);pointer-events:none;z-index:61;
+}
+body.tdah .regua-foco{display:block}
+
+/* ===================== MODO BAIXA VISÃO =====================
+   Todos os tamanhos deste projeto estão em px fixo, então mexer na
+   fonte-raiz não escalaria nada. `zoom` amplia texto e layout junto.
+
+   Mas zoom sozinho só ESTICA a página — fica com cara de site velho
+   dado o esticado, com traço fino e cinza pálido ampliados junto. Por
+   isso aqui o zoom é mais contido e vem acompanhado de contraste,
+   traço mais grosso e área de toque maior, que é o que baixa visão
+   realmente pede. Parece decisão de projeto, não zoom do navegador.
+
+   Aplicado só nos contêineres de conteúdo, não no <body>: o painel e
+   a régua são position:fixed e irmãos do conteúdo — ampliá-los junto
+   empurraria o painel para fora da tela no celular. */
+body.baixa-visao main,
+body.baixa-visao .rodape-transp{ zoom:1.3 }
+body.baixa-visao header{ zoom:1.1 }
+body.baixa-visao nav.abas{ zoom:1.15 }
+
+/* Contraste antes de tamanho: o texto secundário é de baixo contraste
+   por design, e ampliar cinza pálido não resolve nada. */
+body.baixa-visao{
+  --fraco:#A9BFB0;
+  --meio:#E2EFE6;
+  --traco:rgba(255,255,255,.20);
+  --traco-2:rgba(255,255,255,.30);
+}
+body.baixa-visao .fala,
+body.baixa-visao .secao ul,
+body.baixa-visao .secao li{ line-height:1.75 }
+body.baixa-visao .fala{ font-weight:450 }
+
+/* Traço fino some quando a visão é baixa: engrossa borda e separador. */
+body.baixa-visao .placa,
+body.baixa-visao .secao,
+body.baixa-visao .numero,
+body.baixa-visao .pilula,
+body.baixa-visao .destino{ border-width:2px }
+body.baixa-visao .secao h3{ letter-spacing:.06em; color:var(--claro) }
+body.baixa-visao .porque{ border-left-width:4px }
+
+/* Alvo de toque maior e foco muito mais visível. */
+body.baixa-visao .bt,
+body.baixa-visao .chave,
+body.baixa-visao nav.abas button{ padding-block:14px; border-width:2px }
+body.baixa-visao :focus-visible{ outline-width:4px; outline-offset:3px }
+
+/* O painel fica fora do zoom (ver acima), então cresce pelo texto. */
+body.baixa-visao .painel-acess{ width:min(330px, calc(100vw - 24px)); padding:20px; border-width:2px }
+body.baixa-visao .linha-acess{ font-size:17px; color:var(--claro) }
+body.baixa-visao .painel-acess .chave{ font-size:13.5px; padding:12px 16px }
+
+/* ===================== RODAPÉ DE TRANSPARÊNCIA ===================== */
+.rodape-transp{
+  padding:14px 14px 24px;margin-top:6px;
+  font-size:11.5px;line-height:1.55;color:var(--fraco);
+  border-top:1px solid var(--traco);
+}
+.rodape-transp strong{color:var(--meio)}
+
+@media(prefers-reduced-motion:reduce){
+  .fala,.fio.viva{animation:none}
+  .bt:hover{transform:none}
+}
+
+/* ==========================================================
+   TABLET — a partir de 720px
+   ========================================================== */
+@media (min-width:720px){
+  :root{--gap:18px;--r:14px}
+  body{font-size:15.5px}
+
+  header{padding:11px 20px;gap:12px}
+  .marca svg{flex:0 0 30px}
+  .marca b{font-size:16.5px}
+  .marca .sub{display:block}
+  .chave{padding:8px 13px;font-size:10px}
+  .curto{display:none}
+  .longo{display:inline}
+  .painel-acess{top:60px;right:20px}
+
+  nav.abas{padding:0 20px}
+  nav.abas button{padding:13px 15px}
+  main{padding:var(--gap);max-width:840px;margin:0 auto}
+  .rodape-transp{max-width:840px;margin:6px auto 0;padding:14px 20px 24px}
+
+  .grafo{padding:22px 20px 18px}
+  #fluxo{padding:18px;gap:13px}
+  .fala{max-width:80%}
+  .entrada{padding:14px 18px}
+  .exemplos{padding:0 18px 6px}
+  .exemplos button{font-size:13px}
+
+  .placa{padding:20px}
+  .numeros{grid-template-columns:repeat(3,1fr);gap:14px}
+  .numero .n{font-size:34px}
+  .numero .r{font-size:9px}
+  .ranking{grid-template-columns:repeat(2,1fr);gap:12px}
+
+  /* volta a ser tabela de verdade quando há largura para isso */
+  thead{display:table-header-group}
+  tbody tr{display:table-row;padding:0}
+  tbody td{display:table-cell;padding:13px 16px;border-bottom:1px solid rgba(38,51,63,.5);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody td::before{display:none}
+  tbody td.principal{display:table-cell;margin:0}
+  tr.clicavel:hover{background:var(--casco-2);cursor:pointer}
+  th{
+    text-align:left;padding:12px 16px;border-bottom:1px solid var(--traco);
+    font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--fraco);font-weight:700;
+  }
+
+  .rodape-ficha{display:flex;flex-wrap:wrap;gap:9px}
+  .bt.vazado{width:auto}
+}
+
+/* ==========================================================
+   DESKTOP — a partir de 1040px: duas colunas
+   ========================================================== */
+@media (min-width:1040px){
+  :root{--gap:20px}
+  main{max-width:1260px}
+  .rodape-transp{max-width:1260px}
+
+  .duplo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,430px);align-items:start}
+
+  /* Com a ficha ao lado, a conversa ganha rolagem própria para as
+     duas colunas não crescerem em alturas diferentes. */
+  #fluxo{max-height:46vh;overflow-y:auto}
+  /* dvh acompanha a barra do navegador aparecendo/sumindo; iPad em
+     paisagem cai neste breakpoint e sofre com 100vh fixo. Navegador
+     que não conhece dvh ignora a segunda linha e usa a primeira. */
+  #ficha{position:sticky;top:74px;max-height:calc(100vh - 94px);overflow-y:auto}
+  #ficha{max-height:calc(100dvh - 94px)}
+  #ficha::-webkit-scrollbar{width:8px}
+  #ficha::-webkit-scrollbar-thumb{background:var(--traco-2);border-radius:4px}
+
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .ranking{grid-template-columns:repeat(3,1fr)}
+  .fala{max-width:76%}
+}

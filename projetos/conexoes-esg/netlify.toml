@@ -1,0 +1,9 @@
+# Conexões ESG — InovaHACK SENAI Porto 2026
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

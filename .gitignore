@@ -1,0 +1,7 @@
+# Chaves de API (use config.example.js como modelo)
+projetos/conexoes-esg/config.js
+
+# Arquivos de sistema/editor
+.DS_Store
+Thumbs.db
+node_modules/
