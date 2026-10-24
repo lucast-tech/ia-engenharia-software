@@ -22,14 +22,13 @@ Código funcional não significa sistema seguro, escalável ou bem projetado.
 
 ## Projetos
 
-Além da discussão acima, este repositório reúne meus projetos na pasta `projetos/`:
+Meus projetos ficam em repositórios próprios:
 
-| Pasta | O que é |
+| Repositório | O que é |
 |---|---|
-| [`projetos/geraqr`](projetos/geraqr) | Gerador de QR Codes que roda no navegador |
-| [`projetos/conexoes-esg`](projetos/conexoes-esg) | MVP do InovaHACK SENAI Porto 2026 (Copiloto ESG) |
-| [`projetos/site-lucastorres`](projetos/site-lucastorres) | Site lucast.tech |
-| [`projetos/meus-sites`](projetos/meus-sites) | Lista dos meus sites no Wix |
+| [`geraqr`](https://github.com/lucast-tech/geraqr) | Gerador de QR Codes que roda no navegador |
+| [`conexoes-esg`](https://github.com/lucast-tech/conexoes-esg) | MVP do InovaHACK SENAI Porto 2026 (Copiloto ESG) |
+| [`site-lucast.tech`](https://github.com/lucast-tech/site-lucast.tech) | Site lucast.tech, incluindo a página "Sites da Infância" |
 
 ## Links
 
