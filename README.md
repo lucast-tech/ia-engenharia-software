@@ -1,4 +1,4 @@
-# IA vs Engenharia de Software
+# IA VS Engenharia de Software
 
 Este repositório discute a diferença entre geração de código por inteligência artificial e engenharia de software.
 
