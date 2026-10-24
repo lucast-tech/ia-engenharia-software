@@ -35,7 +35,7 @@ Meus projetos ficam em repositórios próprios:
 - Site oficial: https://www.lucast.tech/
 - Meus sites de criança: https://www.lucast.tech/infancia
 - GeraQR (online): https://geraqr-lt.netlify.app/
-- Conexões ESG (online): https://aevosenai.netlify.app/ — *o link está fora do ar no momento; vou corrigir em breve.*
+- Conexões ESG (online): https://aevosenai.netlify.app/
 
 ## Objetivo
 
