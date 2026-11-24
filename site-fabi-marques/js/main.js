@@ -4,9 +4,22 @@
 (function () {
   'use strict';
 
-  /* Ano no rodapé */
+  /* ---------- Ano no rodapé ----------
+     Quem decide é o servidor (netlify/edge-functions/ano.js), no horário de
+     Brasília; ele marca o elemento com data-year-fonte="servidor" e aqui
+     nada muda. Só quando o site é aberto sem servidor (arquivo no computador
+     ou hospedagem sem a função) o ano é calculado aqui, também no horário de
+     Brasília, e só para avançar o ano que já veio escrito no HTML. */
   document.querySelectorAll('[data-year]').forEach(function (el) {
-    el.textContent = new Date().getFullYear();
+    if (el.getAttribute('data-year-fonte') === 'servidor') return;
+    var atual = parseInt(el.textContent, 10) || 0;
+    var ano;
+    try {
+      ano = parseInt(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', year: 'numeric' }).format(new Date()), 10);
+    } catch (e) {
+      ano = new Date().getFullYear();
+    }
+    if (ano > atual) el.textContent = ano;
   });
 
   /* ---------- Menu no celular ---------- */

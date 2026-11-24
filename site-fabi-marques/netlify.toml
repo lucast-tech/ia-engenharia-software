@@ -1,0 +1,12 @@
+# Configuração da hospedagem na Netlify.
+# A pasta publicada é esta mesma (onde está o index.html).
+[build]
+  publish = "."
+  edge_functions = "netlify/edge-functions"
+
+# A pasta da função não é uma página do site
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
