@@ -4,12 +4,41 @@
 (function () {
   'use strict';
 
+  var html = document.documentElement;
+
   /* Ano no rodapé */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
 
-  /* Menu no celular */
+  /* ---------- Modo claro / escuro ----------
+     Sem escolha, vale o que o aparelho usa. A escolha fica guardada
+     só neste navegador. */
+  var temaBtn = document.getElementById('temaBtn');
+  var prefereClaro = window.matchMedia('(prefers-color-scheme: light)');
+  function temaAtual() {
+    var t = html.getAttribute('data-tema');
+    if (t) return t;
+    return prefereClaro.matches ? 'claro' : 'escuro';
+  }
+  function atualizarBotaoTema() {
+    if (!temaBtn) return;
+    var escuro = temaAtual() === 'escuro';
+    temaBtn.textContent = escuro ? 'Modo claro' : 'Modo escuro';
+    temaBtn.setAttribute('aria-label', escuro ? 'Usar o modo claro' : 'Usar o modo escuro');
+  }
+  if (temaBtn) {
+    temaBtn.addEventListener('click', function () {
+      var novo = temaAtual() === 'escuro' ? 'claro' : 'escuro';
+      html.setAttribute('data-tema', novo);
+      try { localStorage.setItem('tema', novo); } catch (e) { /* navegador sem armazenamento */ }
+      atualizarBotaoTema();
+    });
+    if (prefereClaro.addEventListener) prefereClaro.addEventListener('change', atualizarBotaoTema);
+    atualizarBotaoTema();
+  }
+
+  /* ---------- Menu no celular ---------- */
   var btn = document.getElementById('menuBtn');
   var menu = document.getElementById('menu');
   function setMenu(open) {
@@ -27,9 +56,9 @@
     if (e.key === 'Escape') setMenu(false);
   });
 
-  /* Quando o site é aberto direto do computador (file://), as pastas
-     não abrem o index.html sozinhas. Aqui os links internos que terminam
-     em "/" ganham "index.html". Num servidor de verdade nada muda. */
+  /* ---------- Links abertos direto do computador (file://) ----------
+     As pastas não abrem o index.html sozinhas. Aqui os links internos que
+     terminam em "/" ganham "index.html". Num servidor de verdade nada muda. */
   if (location.protocol === 'file:') {
     document.querySelectorAll('a[href]').forEach(function (a) {
       var href = a.getAttribute('href');
@@ -38,6 +67,46 @@
       if (parts[0] === '' || !/\/$/.test(parts[0])) return;
       parts[0] += 'index.html';
       a.setAttribute('href', parts.join('#'));
+    });
+  }
+
+  /* ---------- Voltar ----------
+     Se a pessoa veio de outra página deste site, volta para ela.
+     Senão, o link leva para o início. */
+  document.querySelectorAll('[data-voltar]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var ref = document.referrer;
+      var mesmoSite = ref && (location.protocol === 'file:' ? ref.indexOf('file:') === 0 : ref.indexOf(location.origin) === 0);
+      if (mesmoSite && history.length > 1) {
+        e.preventDefault();
+        history.back();
+      }
+    });
+  });
+
+  /* ---------- Galeria com foto ampliada ---------- */
+  var lb = document.getElementById('lightbox');
+  var itens = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+  if (lb && itens.length && typeof lb.showModal === 'function') {
+    var lbImg = document.getElementById('lightboxImg');
+    var atual = 0;
+    function abrir(i) {
+      atual = (i + itens.length) % itens.length;
+      var foto = itens[atual].querySelector('img');
+      lbImg.src = itens[atual].getAttribute('href');
+      lbImg.alt = foto ? foto.alt : '';
+      if (!lb.open) lb.showModal();
+    }
+    itens.forEach(function (a, i) {
+      a.addEventListener('click', function (e) { e.preventDefault(); abrir(i); });
+    });
+    lb.querySelector('[data-lb-prev]').addEventListener('click', function () { abrir(atual - 1); });
+    lb.querySelector('[data-lb-next]').addEventListener('click', function () { abrir(atual + 1); });
+    lb.querySelector('[data-lb-close]').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') abrir(atual + 1);
+      if (e.key === 'ArrowLeft') abrir(atual - 1);
     });
   }
 
@@ -89,7 +158,6 @@
         pauseBtn.setAttribute('aria-pressed', String(p));
         pauseBtn.textContent = p ? 'Continuar' : 'Pausar';
       }
-      // Pausado, leitores de tela anunciam a troca manual
       stage.setAttribute('aria-live', p ? 'polite' : 'off');
     }
 

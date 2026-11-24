@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07090d">
+  <meta name="color-scheme" content="dark light">
   <title>Sobre | Fabi Marques</title>
   <meta name="description" content="Conheça a professora Fabi Marques, formada em Ciências Físicas e Matemática, com mais de 20 anos de sala de aula.">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+  <script>try{var t=localStorage.getItem('tema');if(t==='claro'||t==='escuro')document.documentElement.setAttribute('data-tema',t)}catch(e){}</script>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="site-header">
     <div class="wrap header-inner">
@@ -20,7 +19,6 @@
         <img src="../assets/img/logo-mark.png" alt="" width="38" height="38">
         <span class="brand-name"><strong>Fabi Marques</strong><small>Física e Matemática</small></span>
       </a>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav class="menu" id="menu" aria-label="Páginas do site">
           <a href="../">Início</a>
           <a href="../sobre/" aria-current="page">Sobre</a>
@@ -30,13 +28,18 @@
           <a href="../dicas/">Dicas</a>
           <a href="../contato/" class="menu-cta">Contato</a>
       </nav>
+      <div class="header-actions">
+        <button class="tema-btn" id="temaBtn" type="button">Modo claro</button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main id="conteudo">
 
     <section class="wrap">
       <header class="page-head" data-mark="FABI">
+        <a class="voltar" href="../" data-voltar>Voltar</a>
         <p class="crumb">/sobre</p>
         <h1>Prazer, eu sou a <em>Fabi</em>.</h1>
         
@@ -46,7 +49,7 @@
     <section class="wrap section">
       <div class="about-grid">
         <figure class="about-photo">
-          <img src="../assets/img/fabi-retrato.jpg" alt="Fabi Marques com a apostila de Matemática e Física" width="540" height="906" loading="lazy">
+          <img class="foto" src="../assets/img/fabi-bracos.jpg" alt="Fabi Marques de braços cruzados, com a camiseta do Studio de Exatas" width="414" height="870" loading="lazy">
           <figcaption class="signature">Fabi Marques, Física e Matemática</figcaption>
         </figure>
         <div class="prose">
@@ -71,6 +74,29 @@
       </div>
     </section>
 
+    <section class="wrap section section-top0" id="fotos">
+      <div class="sec-head"><p>Fotos</p></div>
+      <div class="gallery">
+        <a class="gal-item" href="../assets/img/fabi-retrato.jpg" data-lightbox><img class="foto" src="../assets/img/fabi-retrato.jpg" alt="Fabi Marques em frente a uma estante de livros, segurando a apostila de Matemática e Física" width="540" height="906" loading="lazy"></a>
+        <a class="gal-item" href="../assets/img/fabi-mesa.jpg" data-lightbox><img class="foto" src="../assets/img/fabi-mesa.jpg" alt="Fabi Marques escrevendo em uma mesa digitalizadora, com o notebook ao lado" width="357" height="396" loading="lazy"></a>
+        <a class="gal-item" href="../assets/img/fabi-apontando.jpg" data-lightbox><img class="foto" src="../assets/img/fabi-apontando.jpg" alt="Fabi Marques sorrindo e apontando, com a camiseta do Studio de Exatas" width="528" height="722" loading="lazy"></a>
+        <a class="gal-item" href="../assets/img/fabi-livro.jpg" data-lightbox><img class="foto" src="../assets/img/fabi-livro.jpg" alt="Fabi Marques segurando a apostila de Matemática e Física" width="486" height="906" loading="lazy"></a>
+        <a class="gal-item" href="../assets/img/fabi-bracos.jpg" data-lightbox><img class="foto" src="../assets/img/fabi-bracos.jpg" alt="Fabi Marques de braços cruzados, com a camiseta do Studio de Exatas" width="414" height="870" loading="lazy"></a>
+        <a class="gal-item" href="../assets/img/fabi-2023.jpg" data-lightbox><img class="foto" src="../assets/img/fabi-2023.jpg" alt="Fabi Marques sorrindo, de óculos" width="377" height="339" loading="lazy"></a>
+      </div>
+    </section>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
+      <div class="lightbox-inner">
+        <img id="lightboxImg" alt="">
+        <div class="lightbox-bar">
+          <button type="button" class="rc-btn" data-lb-prev>Anterior</button>
+          <button type="button" class="rc-btn" data-lb-next>Próxima</button>
+          <button type="button" class="rc-btn" data-lb-close>Fechar</button>
+        </div>
+      </div>
+    </dialog>
+
 
     <section class="wrap section">
       <a class="next" href="../cursos/">
@@ -90,32 +116,32 @@
         </a>
         <p class="footer-note">Aula particular, turmas pequenas e preparatório em Matemática e Física. Vitória-ES e online.</p>
       </div>
-      <div>
+      <nav aria-label="Todas as páginas">
         <p class="footer-title">Páginas</p>
         <ul class="footer-links">
+          <li><a href="../">Início</a></li>
           <li><a href="../sobre/">Sobre</a></li>
           <li><a href="../cursos/">Cursos</a></li>
           <li><a href="../como-funciona/">Como funciona</a></li>
           <li><a href="../avaliacoes/">Avaliações</a></li>
           <li><a href="../dicas/">Dicas</a></li>
-          <li><a href="../contato/">Contato</a></li>
         </ul>
-      </div>
-      <div>
-        <p class="footer-title">Contato</p>
+      </nav>
+      <nav aria-label="Atendimento">
+        <p class="footer-title">Atendimento</p>
         <ul class="footer-links">
+          <li><a href="../contato/">Contato</a></li>
           <li><a href="https://wa.me/5527981766763" target="_blank" rel="noopener">WhatsApp (27) 98176-6763</a></li>
           <li><a href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">Instagram @prof.fabimarques</a></li>
-          <li><span>Rua Darcy Grijo, 50, sala 301<br>Jardim da Penha, Vitória-ES</span></li>
+          <li><a href="../privacidade/">Política de privacidade</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
     <div class="wrap footer-bottom">
-      <p>© <span data-year></span> Fabi Marques. Todos os direitos reservados.</p>
+      <p>© <span data-year></span> Fabi Marques</p>
+      <p>Jardim da Penha, Vitória-ES</p>
     </div>
   </footer>
-
-  <a class="wa-float" href="https://wa.me/5527981766763?text=Ol%C3%A1%2C%20professora%20Fabi%21%20Vim%20pelo%20site%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas." target="_blank" rel="noopener">WhatsApp</a>
 
   <script src="../js/main.js"></script>
 </body>
