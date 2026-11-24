@@ -1,5 +1,5 @@
 /* =========================================================
-   Fabi Marques — Interações do site
+   Fabi Marques: interações do site
    ========================================================= */
 (function () {
   'use strict';
@@ -99,7 +99,7 @@
     {
       name: 'Marcos V.',
       role: 'Aprovado na PUC Minas',
-      text: 'Tentei vários vestibulares e ontem saiu o resultado da PUC Minas: consegui o 36º de quase cento e trinta vagas! Gostaria de agradecer todo o apoio e incentivo que me deu durante esse ano de pandemia. Irei levar seus ensinamentos por onde eu passar e para toda a minha vida.'
+      text: 'Tentei vários vestibulares e ontem saiu o resultado da PUC Minas, e conseguimos o 36º de quase cento e trinta vagas! Gostaria de agradecer todo o apoio e incentivo que me deu durante esse ano de pandemia. Irei levar seus ensinamentos por onde eu passar e para toda a minha vida.'
     },
     {
       name: 'Luiza R.',
@@ -161,7 +161,7 @@
             <small>${t.role}</small>
           </div>
         </div>`;
-      slide.querySelector('.quote').textContent = '“' + t.text + '”';
+      slide.querySelector('.quote').textContent = '"' + t.text + '"';
       slidesEl.appendChild(slide);
 
       const dot = document.createElement('button');
