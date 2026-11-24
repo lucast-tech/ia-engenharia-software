@@ -22,6 +22,30 @@
     if (ano > atual) el.textContent = ano;
   });
 
+  /* ---------- Link na bio: compartilhar ----------
+     No celular abre a janela de compartilhar do aparelho; no computador
+     copia o endereço da página. */
+  var shareBtn = document.getElementById('bioShare');
+  var toast = document.getElementById('bioToast');
+  if (shareBtn) {
+    var avisar = function (txt) {
+      if (!toast) return;
+      toast.textContent = txt;
+      clearTimeout(avisar.t);
+      avisar.t = setTimeout(function () { toast.textContent = ''; }, 3000);
+    };
+    shareBtn.addEventListener('click', function () {
+      var url = location.href.split('#')[0];
+      if (navigator.share) {
+        navigator.share({ title: 'Fabi Marques', text: 'Professora de Matemática e Física', url: url }).catch(function () {});
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { avisar('Link copiado'); }, function () { avisar(url); });
+      } else {
+        avisar(url);
+      }
+    });
+  }
+
   /* ---------- Menu no celular ---------- */
   var btn = document.getElementById('menuBtn');
   var menu = document.getElementById('menu');
