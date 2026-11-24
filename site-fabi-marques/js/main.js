@@ -4,39 +4,10 @@
 (function () {
   'use strict';
 
-  var html = document.documentElement;
-
   /* Ano no rodapé */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
-
-  /* ---------- Modo claro / escuro ----------
-     Sem escolha, vale o que o aparelho usa. A escolha fica guardada
-     só neste navegador. */
-  var temaBtn = document.getElementById('temaBtn');
-  var prefereClaro = window.matchMedia('(prefers-color-scheme: light)');
-  function temaAtual() {
-    var t = html.getAttribute('data-tema');
-    if (t) return t;
-    return prefereClaro.matches ? 'claro' : 'escuro';
-  }
-  function atualizarBotaoTema() {
-    if (!temaBtn) return;
-    var escuro = temaAtual() === 'escuro';
-    temaBtn.textContent = escuro ? 'Modo claro' : 'Modo escuro';
-    temaBtn.setAttribute('aria-label', escuro ? 'Usar o modo claro' : 'Usar o modo escuro');
-  }
-  if (temaBtn) {
-    temaBtn.addEventListener('click', function () {
-      var novo = temaAtual() === 'escuro' ? 'claro' : 'escuro';
-      html.setAttribute('data-tema', novo);
-      try { localStorage.setItem('tema', novo); } catch (e) { /* navegador sem armazenamento */ }
-      atualizarBotaoTema();
-    });
-    if (prefereClaro.addEventListener) prefereClaro.addEventListener('change', atualizarBotaoTema);
-    atualizarBotaoTema();
-  }
 
   /* ---------- Menu no celular ---------- */
   var btn = document.getElementById('menuBtn');
