@@ -220,20 +220,24 @@ p { margin: 0 0 1em; }
 .shortcuts span { color: var(--gray); font-size: 13.5px; }
 
 /* Cada curso: foto real inteira + texto, alternando o lado */
-.courses { display: flex; flex-direction: column; gap: clamp(40px, 6vw, 72px); }
-.course { display: grid; grid-template-columns: 320px 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; scroll-margin-top: calc(var(--header-h) + 24px); }
-.course-rev { grid-template-columns: 1fr 320px; }
-.course-rev .course-photo { order: 2; }
-.course-photo { margin: 0; display: flex; justify-content: center; }
-.course-photo .foto { width: auto; max-width: 100%; max-height: 440px; }
-.course-text { max-width: 600px; }
-.course-text > .course-tag { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
-.course h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); text-transform: uppercase; }
-.course-text > p { color: var(--gray); font-size: 1.05rem; }
-.course-list { list-style: none; margin: 18px 0 24px; padding: 0; border-top: 1px solid var(--line); }
-.course-list li { position: relative; padding: 11px 0 11px 20px; border-bottom: 1px solid var(--line); color: var(--ink); }
-.course-list li::before { content: ""; position: absolute; left: 0; top: 50%; width: 8px; height: 2px; background: var(--accent); }
-.course:target .foto { border-color: var(--accent); }
+/* Cada curso é um cartão: texto | lista | botão */
+.courses { display: flex; flex-direction: column; gap: 12px; }
+.course {
+  display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 28px; align-items: center;
+  padding: 26px 28px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  scroll-margin-top: calc(var(--header-h) + 20px); transition: border-color .3s;
+}
+.course h2 { font-size: 1.4rem; margin-bottom: .3em; }
+.course p { color: var(--gray); margin: 0; }
+.course-featured { background: linear-gradient(135deg, #1a1410, var(--card) 60%); border-color: rgba(240,122,34,.45); }
+.badge {
+  display: inline-block; background: var(--accent); color: var(--on-accent); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; padding: 4px 9px; border-radius: 3px; margin-bottom: 12px;
+}
+.course-list { list-style: none; margin: 0; padding: 0; }
+.course-list li { position: relative; padding-left: 16px; margin: 5px 0; font-size: 14.5px; color: var(--ink); }
+.course-list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 2px; background: var(--accent); }
+.course:target { border-color: var(--accent); }
 
 /* ---------- Como funciona ---------- */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -333,28 +337,42 @@ p { margin: 0 0 1em; }
 .faq-item p { color: var(--gray); padding-bottom: 17px; margin: 0; }
 
 /* ---------- Política de privacidade ---------- */
-.politica { display: grid; grid-template-columns: 300px 1fr; gap: clamp(24px, 5vw, 56px); align-items: start; }
-.politica-lado { position: sticky; top: calc(var(--header-h) + 20px); display: flex; flex-direction: column; gap: 14px; }
-.resumo, .sumario { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-.resumo { border-left: 3px solid var(--accent); }
-.resumo ul, .sumario ol { margin: 0; padding-left: 18px; font-size: 14px; color: var(--gray); }
-.resumo li, .sumario li { margin: 6px 0; }
-.sumario a { color: var(--ink); text-decoration: none; }
-.sumario a:hover { color: var(--accent-text); }
-.politica-texto { max-width: 760px; color: var(--gray); }
-.politica-texto h2 { font-size: 1.25rem; margin: 2.2em 0 .6em; padding-top: 1em; border-top: 1px solid var(--line); scroll-margin-top: calc(var(--header-h) + 20px); }
-.politica-texto h2:first-of-type { margin-top: 1.2em; }
-.politica-texto strong { color: var(--title); }
-.politica-texto a { color: var(--accent-text); text-decoration: none; font-weight: 700; }
-.politica-texto ul { padding-left: 20px; }
-.politica-texto li { margin: 8px 0; }
-.politica-canal { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
-.tabela-wrap { overflow-x: auto; margin: 0 0 1em; border: 1px solid var(--line); border-radius: var(--radius); }
-.tabela { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
-.tabela th, .tabela td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
-.tabela th { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); background: var(--card); }
-.tabela tr:last-child td { border-bottom: 0; }
-.tabela td:first-child { color: var(--title); font-weight: 700; }
+/* Mesmo formato da política da Brava: uma coluna estreita */
+.priv-page { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+.priv-page .voltar { margin-bottom: 28px; }
+.priv-title { font-size: 26px; text-transform: none; letter-spacing: -.01em; margin: 0 0 8px; }
+.priv-date { font-size: 11px; letter-spacing: .06em; color: var(--gray); margin: 0 0 32px; }
+.priv-intro {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 20px 24px;
+  margin-bottom: 24px; font-size: 13.5px; line-height: 1.75; color: var(--accent-text);
+}
+.priv-intro strong { color: var(--accent-text); }
+.priv-highlight {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px;
+  font-size: 13.5px; color: var(--ink); line-height: 1.7; margin: 12px 0;
+}
+.priv-highlight a { color: var(--accent-text); text-decoration: none; }
+.priv-resumo { margin: 0 0 32px; border-left: 3px solid var(--accent); }
+.priv-resumo ul { margin: 8px 0 0; padding-left: 20px; }
+.priv-resumo li { margin: 4px 0; }
+.priv-section { margin-bottom: 28px; }
+.priv-section h2 {
+  font-size: 18px; color: var(--accent-text); margin: 0 0 12px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-soft); scroll-margin-top: calc(var(--header-h) + 20px);
+}
+.priv-section p, .priv-section li { font-size: 14px; color: var(--gray); line-height: 1.8; }
+.priv-section p { margin: 0 0 12px; }
+.priv-section ul { padding-left: 20px; margin: 0 0 12px; }
+.priv-section li { margin: 4px 0; }
+.priv-section strong { color: var(--title); }
+.priv-section a { color: var(--accent-text); text-decoration: none; font-weight: 700; }
+.priv-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 14px 0; }
+.priv-table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13px; }
+.priv-table th {
+  font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); text-align: left;
+  padding: 10px 12px; border-bottom: 2px solid var(--line); background: var(--card);
+}
+.priv-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink); line-height: 1.6; }
 
 /* ---------- Próximo passo ---------- */
 .next {
@@ -394,13 +412,11 @@ p { margin: 0 0 1em; }
 }
 
 @media (max-width: 860px) {
-  .hero-grid, .about-grid, .contact-grid, .politica { grid-template-columns: 1fr; }
+  .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
   .hero-photo { justify-self: start; max-width: 320px; }
-  .politica-lado { position: static; }
   .stats { grid-template-columns: 1fr 1fr; }
-  .course, .course-rev { grid-template-columns: 1fr; }
-  .course-rev .course-photo { order: 0; }
-  .course-photo { max-width: 300px; }
+  .course { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .course .btn { justify-self: start; }
   .steps, .compare { grid-template-columns: 1fr; }
   .topics { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -412,7 +428,6 @@ p { margin: 0 0 1em; }
   .actions .btn { flex: 1 1 100%; }
   .shortcuts, .topics { grid-template-columns: 1fr; }
   .strip { gap: 8px; }
-  .course-photo { justify-content: flex-start; }
   .details div { grid-template-columns: 1fr; gap: 2px; }
   .brand-name small { display: none; }
   .brand-name strong { font-size: 13.5px; }
