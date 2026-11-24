@@ -3,386 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Prof. Fabi Marques, professora de Matemática e Física em Vitória-ES. Acompanhamento escolar e preparatório para Enem e vestibulares.">
-  <title>Fabi Marques | Matemática e Física</title>
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <title>Fabi Marques | Matemática e Física em Vitória-ES</title>
+  <meta name="description" content="Professora de Matemática e Física em Vitória-ES. Aula particular, reforço escolar e preparatório para Enem e vestibulares.">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-  <!-- Barra de progresso de leitura -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- ============ HEADER ============ -->
-  <header class="header" id="header">
-    <div class="container nav-wrap">
-      <a href="#inicio" class="brand" aria-label="Fabi Marques - início">
-        <img class="brand-mark" src="assets/img/logo-mark.png" alt="">
-        <span class="brand-text">
-          <strong>Fabi Marques</strong>
-          <small>Física e Matemática</small>
-        </span>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">
+        <img src="./assets/img/logo-mark.png" alt="" width="40" height="40">
+        <span class="brand-name"><strong>Fabi Marques</strong><small>Física e Matemática</small></span>
       </a>
-
-      <nav class="nav" id="nav">
-        <a href="#sobre">Sobre</a>
-        <a href="#cursos">Cursos</a>
-        <a href="#metodo">Aulas</a>
-        <a href="#conteudo">Dicas</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#faq">Dúvidas</a>
-        <a href="#contato" class="btn btn-small nav-cta">Fale comigo</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav class="menu" id="menu" aria-label="Páginas do site">
+          <a href="./" aria-current="page">Início</a>
+          <a href="./sobre/">Sobre</a>
+          <a href="./cursos/">Cursos</a>
+          <a href="./como-funciona/">Como funciona</a>
+          <a href="./depoimentos/">Depoimentos</a>
+          <a href="./dicas/">Dicas</a>
+          <a href="./contato/" class="menu-cta">Contato</a>
       </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 
-  <main id="inicio">
+  <main>
 
-    <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="hero-bg-shape shape-1"></div>
-      <div class="hero-bg-shape shape-2"></div>
-      <div class="container hero-grid">
-        <div class="hero-text reveal">
-          <span class="eyebrow">Studio de Exatas · Vitória-ES</span>
-          <h1>Matemática e Física com quem explica <span class="accent">até você entender</span>.</h1>
-          <p class="lead">
-            Acompanhamento escolar e preparatório para Enem e vestibulares,
-            em turmas pequenas, com aulas online e presenciais.
-          </p>
-          <div class="hero-actions">
-            <a href="#contato" class="btn btn-primary">Quero começar</a>
-            <a href="#cursos" class="btn btn-ghost">Ver cursos</a>
-          </div>
-          <ul class="hero-badges">
-            <li><span>20+</span> anos de experiência</li>
-            <li><span>5</span> alunos por turma</li>
-            <li><span>Online</span> e presencial</li>
-          </ul>
-        </div>
-
-        <div class="hero-visual reveal">
-          <div class="photo-frame">
-            <img src="assets/img/fabi.jpg" alt="Professora Fabi Marques segurando a apostila de Matemática e Física" loading="eager">
-          </div>
-          <div class="floating-card card-a">
-            <span class="dot"></span> Método prático e acompanhamento de perto
-          </div>
-          <div class="floating-card card-b">
-            <strong>Enem</strong>
-            <small>e vestibulares do ES</small>
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="kicker">Studio de Exatas · Vitória-ES</p>
+          <h1>O problema pode ser o <em>método</em>.</h1>
+          <p class="lead">Muitas dificuldades em Matemática e Física acontecem porque falta um método que funcione para o aluno. A professora Fabi Marques ensina essas matérias há mais de 20 anos e ajusta a explicação a cada estudante.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="cursos/">Ver os cursos</a>
+            <a class="btn btn-line" href="https://wa.me/5527981766763?text=Ol%C3%A1%2C%20professora%20Fabi%21%20Quero%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas." target="_blank" rel="noopener">Falar no WhatsApp</a>
           </div>
         </div>
-      </div>
-
-      <a href="#sobre" class="scroll-hint" aria-label="Rolar para baixo">
-        <span></span>
-      </a>
-    </section>
-
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Matemática</span><span>Física</span><span>Enem</span><span>Vestibular</span><span>Ensino Médio</span><span>Medicina</span><span>Acompanhamento escolar</span>
-        <span>Matemática</span><span>Física</span><span>Enem</span><span>Vestibular</span><span>Ensino Médio</span><span>Medicina</span><span>Acompanhamento escolar</span>
-      </div>
-    </div>
-
-    <!-- ============ SOBRE ============ -->
-    <section class="section about" id="sobre">
-      <div class="container about-grid">
-        <div class="about-media reveal">
-          <div class="blob"></div>
-          <div class="about-photo">
-            <img src="assets/img/fabi.jpg" alt="Fabi Marques com a apostila de Matemática e Física" loading="lazy">
-          </div>
-        </div>
-        <div class="about-text reveal">
-          <span class="eyebrow">Sobre a professora</span>
-          <h2>Prazer, eu sou a <span class="accent">Fabi</span>.</h2>
-          <p>
-            Sou professora de Matemática e Física há mais de 20 anos. Muitos dos meus alunos
-            chegam achando que exatas não é para eles.
-          </p>
-          <p>
-            Sou formada em Ciências Físicas pela UEMA e em Matemática pela Unifaveni.
-            Nas aulas, explico de onde vem cada fórmula e adapto o jeito de estudar a cada aluno.
-          </p>
-          <div class="signature">
-            <span class="sig-line"></span>
-            <span>Fabi Marques, Física e Matemática</span>
-          </div>
-        </div>
+        <figure class="hero-photo">
+          <img src="assets/img/fabi-retrato.jpg" alt="Professora Fabi Marques segurando a apostila de Matemática e Física" width="540" height="906">
+        </figure>
       </div>
     </section>
 
-    <!-- ============ CURSOS ============ -->
-    <section class="section courses" id="cursos">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="eyebrow">Cursos</span>
-          <h2>Qual curso combina com <span class="accent">você</span>?</h2>
-          <p>Veja as opções e me chame no WhatsApp para saber horários e valores.</p>
-        </header>
-
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg>
-            </div>
-            <h3>Curso semestral ou anual</h3>
-            <p>Matemática ou Física com apostila atualizada e resolução de provas.</p>
-            <ul class="check-list">
-              <li>Aulas online e presenciais</li>
-              <li>Turmas pequenas</li>
-            </ul>
-            <a href="#contato" class="card-link">Quero saber mais →</a>
-          </article>
-
-          <article class="card card-featured reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
-            </div>
-            <h3>Preparatório para vestibular no ES</h3>
-            <p>Preparação para as provas de EMESCAM, UVV, Multivix e UNESC.</p>
-            <ul class="check-list">
-              <li>Física e matemática</li>
-              <li>Resolução de provas anteriores</li>
-              <li>Início em fevereiro</li>
-            </ul>
-            <a href="#contato" class="btn btn-primary btn-block">Garantir minha vaga</a>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/></svg>
-            </div>
-            <h3>Preparatório para medicina</h3>
-            <p>Em parceria com a MedQuímica.es, para quem vai prestar vestibular de medicina.</p>
-            <ul class="check-list">
-              <li>Matemática e física</li>
-              <li>Acompanhamento de perto</li>
-            </ul>
-            <a href="#contato" class="card-link">Quero saber mais →</a>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
-            </div>
-            <h3>Reforço escolar</h3>
-            <p>Para alunos do Ensino Médio. Dá para começar antes de a nota cair.</p>
-            <ul class="check-list">
-              <li>Matemática e Física</li>
-              <li>Acompanhamento individual</li>
-            </ul>
-            <a href="#contato" class="card-link">Quero saber mais →</a>
-          </article>
-        </div>
+    <section class="facts">
+      <div class="wrap facts-grid">
+        <div><strong>20+</strong><span>anos dando aula</span></div>
+        <div><strong>1</strong><span>aluno por vez na aula particular</span></div>
+        <div><strong>Até 5</strong><span>alunos nas turmas</span></div>
+        <div><strong>Online</strong><span>ou presencial em Vitória</span></div>
       </div>
     </section>
 
-    <!-- ============ COMO SÃO AS AULAS ============ -->
-    <section class="section method" id="metodo">
-      <div class="container">
-        <header class="section-head light reveal">
-          <span class="eyebrow">Como são as aulas</span>
-          <h2>Como funciona o <span class="accent">acompanhamento</span></h2>
-        </header>
-
-        <div class="steps">
-          <div class="step reveal">
-            <div class="step-num">01</div>
-            <h3>Conversa inicial</h3>
-            <p>Vemos juntos em quais conteúdos você tem mais dificuldade.</p>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">02</div>
-            <h3>Teoria explicada</h3>
-            <p>Cada conteúdo vem com o raciocínio por trás, sem decoreba.</p>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">03</div>
-            <h3>Questões de prova</h3>
-            <p>Você resolve questões de vestibular e Enem com a professora ao lado.</p>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">04</div>
-            <h3>Revisão</h3>
-            <p>Voltamos aos pontos fracos até a prova.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTEÚDO NO INSTAGRAM ============ -->
-    <section class="section content" id="conteudo">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="eyebrow">Dicas</span>
-          <h2>Dicas e questões no <span class="accent">Instagram</span></h2>
-          <p>Explicações curtas e questões resolvidas no perfil @prof.fabimarques.</p>
-        </header>
-        <div class="topics">
-          <a class="topic reveal" href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">
-            <span class="topic-formula">F = k·q₁q₂/d²</span>
-            <strong>Lei de Coulomb</strong><small>Física: eletrostática</small>
-          </a>
-          <a class="topic reveal" href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">
-            <span class="topic-formula">F = G·Mm/d²</span>
-            <strong>Lei da gravitação universal</strong><small>Física: mecânica</small>
-          </a>
-          <a class="topic reveal" href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">
-            <span class="topic-formula">S = S₀ + v·t</span>
-            <strong>Macetes "sorvete" e "vovô surta"</strong><small>Física: cinemática</small>
-          </a>
-          <a class="topic reveal" href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">
-            <span class="topic-formula">∫ f(x) dx</span>
-            <strong>O que é uma integral?</strong><small>Matemática</small>
-          </a>
-          <a class="topic reveal" href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">
-            <span class="topic-formula">sen, cos, tan</span>
-            <strong>Tabela trigonométrica</strong><small>Matemática</small>
-          </a>
-          <a class="topic reveal" href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">
-            <span class="topic-formula">ENEM</span>
-            <strong>A questão mais difícil do Enem</strong><small>Resolução passo a passo</small>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ DEPOIMENTOS ============ -->
-    <section class="section testimonials" id="depoimentos">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="eyebrow">Depoimentos</span>
-          <h2>O que dizem os <span class="accent">alunos</span></h2>
-        </header>
-
-        <div class="slider reveal" id="slider">
-          <div class="slides" id="slides">
-            <!-- preenchido pelo JS (js/main.js) -->
-          </div>
-          <div class="slider-controls">
-            <button class="slider-btn" id="prevBtn" aria-label="Depoimento anterior">‹</button>
-            <div class="dots" id="dots"></div>
-            <button class="slider-btn" id="nextBtn" aria-label="Próximo depoimento">›</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section class="section faq" id="faq">
-      <div class="container faq-grid">
-        <header class="section-head faq-head reveal">
-          <span class="eyebrow">Dúvidas frequentes</span>
-          <h2>Ainda tem <span class="accent">perguntas</span>?</h2>
-          <p>Se a sua não estiver aqui, me chama no WhatsApp.</p>
-        </header>
-
-        <div class="accordion reveal">
-          <details class="acc-item" open>
-            <summary>As aulas são online ou presenciais?</summary>
-            <p>Os cursos têm aulas online e presenciais. Os horários de cada turma são passados pelo WhatsApp.</p>
-          </details>
-          <details class="acc-item">
-            <summary>Qual o tamanho das turmas?</summary>
-            <p>As turmas são pequenas, com até 5 alunos, para que todo mundo tenha espaço para perguntar.</p>
-          </details>
-          <details class="acc-item">
-            <summary>Para quais vestibulares é o preparatório?</summary>
-            <p>Para as provas do Espírito Santo, como EMESCAM, UVV, Multivix e UNESC, e para o Enem.</p>
-          </details>
-          <details class="acc-item">
-            <summary>Meu filho tem dificuldade em exatas. Como funciona?</summary>
-            <p>No reforço escolar do Ensino Médio, a professora acompanha o aluno de perto e retoma os conteúdos que ficaram para trás.</p>
-          </details>
-          <details class="acc-item">
-            <summary>Como faço a matrícula?</summary>
-            <p>Mande uma mensagem no WhatsApp (27) 98176-6763 com o curso que te interessa.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTATO / CTA ============ -->
-    <section class="section cta" id="contato">
-      <div class="container cta-box reveal">
-        <div class="cta-text">
-          <span class="eyebrow light">Contato</span>
-          <h2>Fale com a professora pelo <span class="accent">WhatsApp</span></h2>
-          <p>Conte qual é a sua dificuldade ou o seu objetivo, e ela te explica qual curso faz mais sentido.</p>
-          <div class="cta-actions">
-            <a href="https://wa.me/5527981766763?text=Ol%C3%A1%2C%20professora%20Fabi!%20Quero%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas." class="btn btn-whatsapp" target="_blank" rel="noopener">
-              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
-              Chamar no WhatsApp
+    <section class="section">
+      <div class="wrap">
+        <h2>Por onde você quer começar?</h2>
+        <p class="section-intro">Escolha a opção mais parecida com a sua situação.</p>
+        <ol class="paths">
+          <li>
+            <a href="cursos/#particular">
+              <span class="path-num">01</span>
+              <span class="path-body"><strong>Quero aula particular</strong><span>Aula só para você, com a professora, no seu ritmo.</span></span>
+              <span class="path-go">Ver aula particular</span>
             </a>
-            <a href="https://instagram.com/prof.fabimarques" class="btn btn-ghost-light" target="_blank" rel="noopener">Instagram</a>
-          </div>
-        </div>
-        <div class="cta-info">
-          <div class="info-item">
-            <span class="info-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-            </span>
-            <div>
-              <strong>WhatsApp</strong>
-              <p>(27) 98176-6763</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span class="info-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <div>
-              <strong>Endereço</strong>
-              <p>Rua Darcy Grijo, nº 50, sala 301<br>Ed. Madison Office Tower, Jardim da Penha<br>Vitória-ES, CEP 29060-500</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span class="info-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-            </span>
-            <div>
-              <strong>Instagram</strong>
-              <p>@prof.fabimarques</p>
-            </div>
-          </div>
-        </div>
+          </li>
+          <li>
+            <a href="cursos/#vestibular">
+              <span class="path-num">02</span>
+              <span class="path-body"><strong>Vou prestar vestibular ou Enem</strong><span>Preparatório para EMESCAM, UVV, Multivix, UNESC e Enem.</span></span>
+              <span class="path-go">Ver preparatório</span>
+            </a>
+          </li>
+          <li>
+            <a href="cursos/#reforco">
+              <span class="path-num">03</span>
+              <span class="path-body"><strong>Meu filho está com dificuldade</strong><span>Reforço escolar para o Ensino Médio.</span></span>
+              <span class="path-go">Ver reforço</span>
+            </a>
+          </li>
+          <li>
+            <a href="sobre/">
+              <span class="path-num">04</span>
+              <span class="path-body"><strong>Quero conhecer a professora</strong><span>Formação, experiência e jeito de dar aula.</span></span>
+              <span class="path-go">Ver sobre</span>
+            </a>
+          </li>
+        </ol>
       </div>
     </section>
+
+    <section class="section section-paper">
+      <div class="wrap quote-feature">
+        <blockquote>
+          <p>"Foi um período intenso, com muitas expectativas, e a Fabi conseguiu com muita perícia entender minhas necessidades e encontramos a melhor forma de estudar."</p>
+          <footer><strong>Gilzemar C.</strong>, aprovado em 1º lugar em Medicina na Multivix 2024-1</footer>
+        </blockquote>
+        <a class="text-link" href="depoimentos/">Ler todos os depoimentos</a>
+      </div>
+    </section>
+
 
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container footer-wrap">
-      <div class="brand">
-        <img class="brand-mark" src="assets/img/logo-mark.png" alt="">
-        <span class="brand-text">
-          <strong>Fabi Marques</strong>
-          <small>Física e Matemática</small>
-        </span>
+  <div class="band" aria-hidden="true"><div class="band-track"><span>Matemática</span><span>Física</span><span>Aula particular</span><span>Enem</span><span>Vestibular</span><span>Ensino Médio</span><span>Medicina</span><span>Reforço escolar</span><span>Matemática</span><span>Física</span><span>Aula particular</span><span>Enem</span><span>Vestibular</span><span>Ensino Médio</span><span>Medicina</span><span>Reforço escolar</span></div></div>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand brand-light" href="./">
+          <img src="./assets/img/logo-mark.png" alt="" width="40" height="40">
+          <span class="brand-name"><strong>Fabi Marques</strong><small>Studio de Exatas</small></span>
+        </a>
+        <p class="footer-note">Aulas particulares, turmas pequenas e preparatório em Matemática e Física. Vitória-ES e online.</p>
       </div>
-      <p>© <span id="year"></span> Fabi Marques. Todos os direitos reservados.</p>
-      <a href="#inicio" class="back-top" aria-label="Voltar ao topo">↑</a>
+      <div>
+        <p class="footer-title">Páginas</p>
+        <ul class="footer-links">
+          <li><a href="./sobre/">Sobre</a></li>
+          <li><a href="./cursos/">Cursos</a></li>
+          <li><a href="./como-funciona/">Como funciona</a></li>
+          <li><a href="./depoimentos/">Depoimentos</a></li>
+          <li><a href="./dicas/">Dicas</a></li>
+          <li><a href="./contato/">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Contato</p>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/5527981766763" target="_blank" rel="noopener">WhatsApp (27) 98176-6763</a></li>
+          <li><a href="https://instagram.com/prof.fabimarques" target="_blank" rel="noopener">Instagram @prof.fabimarques</a></li>
+          <li>Rua Darcy Grijo, 50, sala 301<br>Jardim da Penha, Vitória-ES</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© <span data-year></span> Fabi Marques. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-  <!-- Botão flutuante do WhatsApp -->
-  <a href="https://wa.me/5527981766763" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
-  </a>
+  <a class="wa-float" href="https://wa.me/5527981766763?text=Ol%C3%A1%2C%20professora%20Fabi%21%20Vim%20pelo%20site%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas." target="_blank" rel="noopener">WhatsApp</a>
 
-  <script src="js/main.js"></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>
